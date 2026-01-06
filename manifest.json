@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Markdown Viewer Mermaid Plus",
+  "version": "1.0.0",
+  "description": "增强 Markdown Viewer 的 Mermaid 图表功能 - 添加全屏查看和改进的缩放体验",
+  "content_scripts": [
+    {
+      "matches": ["file://*/*.md", "file://*/*.markdown"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
