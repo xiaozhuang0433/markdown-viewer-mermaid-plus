@@ -119,28 +119,27 @@
     state.closeBtn = closeBtn;
   }
 
-  // 显示 Shift 提示
+  // 显示 Shift 提示 - 每次滚动都重新显示
   let shiftHintTimeout = null;
   function showShiftHint(pre) {
-    // 如果已经显示，重置计时器
+    // 移除旧的提示（如果存在）
     const existingHint = pre.querySelector('.mermaid-plus-shift-hint');
     if (existingHint) {
-      clearTimeout(shiftHintTimeout);
-      shiftHintTimeout = setTimeout(() => {
-        existingHint.remove();
-      }, 3000);
-      return;
+      existingHint.remove();
     }
+    clearTimeout(shiftHintTimeout);
 
-    // 创建提示元素
+    // 创建提示元素（带淡入动画）
     const hint = document.createElement('div');
-    hint.className = 'mermaid-plus-shift-hint';
+    hint.className = 'mermaid-plus-shift-hint fade-in';
     hint.innerHTML = '🔍 按住 Shift 缩放';
     pre.appendChild(hint);
 
-    // 3秒后移除
+    // 3秒后淡出移除
     shiftHintTimeout = setTimeout(() => {
-      hint.remove();
+      hint.classList.remove('fade-in');
+      hint.style.opacity = '0';
+      setTimeout(() => hint.remove(), 300);
     }, 3000);
   }
 

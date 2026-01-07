@@ -157,24 +157,22 @@ pre.mermaid-plus-fullscreen .mermaid-plus-controls {
   font-weight: 500;
   pointer-events: none;
   z-index: 100;
-  animation: fadeInOut 3s forwards;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
-@keyframes fadeInOut {
-  0% {
+/* 提示淡入动画（首次显示时）*/
+.mermaid-plus-shift-hint.fade-in {
+  animation: hintFadeIn 0.3s ease forwards;
+}
+
+@keyframes hintFadeIn {
+  from {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.9);
   }
-  10% {
+  to {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
-  }
-  90% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.9);
   }
 }

@@ -2,7 +2,14 @@
   "manifest_version": 3,
   "name": "Markdown Viewer Mermaid Plus",
   "version": "1.0.0",
-  "description": "增强 Markdown Viewer 的 Mermaid 图表功能 - 添加全屏查看和改进的缩放体验",
+  "description": "为本地 Markdown 文件中的 Mermaid 图表添加全屏查看、缩放、拖拽等增强功能。注意：本插件需要配合 Markdown Viewer（或其他 Markdown 预览插件）一起使用。",
+  "author": "xiaozhuang0433",
+  "homepage_url": "https://github.com/xiaozhuang0433/markdown-viewer-mermaid-plus",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "content_scripts": [
     {
       "matches": ["file://*/*.md", "file://*/*.markdown"],
