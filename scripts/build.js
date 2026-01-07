@@ -55,5 +55,14 @@ filesToInclude.forEach(file => {
   }
 });
 
+// 添加 icons 目录
+const iconsDir = path.join(__dirname, '..', 'icons');
+if (fs.existsSync(iconsDir)) {
+  archive.directory(iconsDir, 'icons');
+  console.log(chalk.gray(`   Added: icons/`));
+} else {
+  console.warn(chalk.yellow(`   Warning: icons/ directory not found`));
+}
+
 // 完成打包
 archive.finalize();
