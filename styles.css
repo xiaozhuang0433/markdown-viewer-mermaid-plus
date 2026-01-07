@@ -84,24 +84,31 @@ pre.mermaid-plus-fullscreen {
   justify-content: center !important;
 }
 
-/* 内部 code 自适应，不出现滚动条 */
+/* 内部 code 自适应 */
 pre.mermaid-plus-fullscreen > code {
   margin: 0 !important;
   padding: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  /* 不设置宽高，让内容自然撑开 */
+  width: auto !important;
+  height: auto !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   overflow: visible !important;
+  /* 重要：让 transform 生效 */
+  transform-origin: center center !important;
+  will-change: transform !important;
 }
 
-/* SVG 自适应容器 */
+/* SVG 在全屏时不限制尺寸，允许缩放 */
 pre.mermaid-plus-fullscreen code svg {
-  max-width: 100% !important;
-  max-height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
   width: auto !important;
   height: auto !important;
+  display: block !important;
+  transform-origin: center center !important;
+  will-change: transform !important;
 }
 
 /* 暗色主题 */
@@ -134,4 +141,40 @@ pre.mermaid-plus-fullscreen code.mermaid svg:active {
 /* 全屏时控制栏始终可见 */
 pre.mermaid-plus-fullscreen .mermaid-plus-controls {
   opacity: 1 !important;
+}
+
+/* Shift 提示 */
+.mermaid-plus-shift-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  pointer-events: none;
+  z-index: 100;
+  animation: fadeInOut 3s forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
 }

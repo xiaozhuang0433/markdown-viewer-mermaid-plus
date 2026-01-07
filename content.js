@@ -119,6 +119,31 @@
     state.closeBtn = closeBtn;
   }
 
+  // 显示 Shift 提示
+  let shiftHintTimeout = null;
+  function showShiftHint(pre) {
+    // 如果已经显示，重置计时器
+    const existingHint = pre.querySelector('.mermaid-plus-shift-hint');
+    if (existingHint) {
+      clearTimeout(shiftHintTimeout);
+      shiftHintTimeout = setTimeout(() => {
+        existingHint.remove();
+      }, 3000);
+      return;
+    }
+
+    // 创建提示元素
+    const hint = document.createElement('div');
+    hint.className = 'mermaid-plus-shift-hint';
+    hint.innerHTML = '🔍 按住 Shift 缩放';
+    pre.appendChild(hint);
+
+    // 3秒后移除
+    shiftHintTimeout = setTimeout(() => {
+      hint.remove();
+    }, 3000);
+  }
+
   // 绑定事件
   function bindEvents(pre, svg, state) {
     // 鼠标滚轮缩放
@@ -127,6 +152,13 @@
         ? CONFIG.fullscreenMode.requireShift
         : CONFIG.normalMode.requireShift;
 
+      // 全屏模式：没有按 Shift 时显示提示
+      if (state.isFullscreen && !e.shiftKey) {
+        showShiftHint(state.pre);
+        return;
+      }
+
+      // 普通模式或按了 Shift，让原插件处理
       if (requireShift && !e.shiftKey) {
         return; // 不处理，让原插件处理
       }
