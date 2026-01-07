@@ -1,0 +1,26 @@
+{
+  "name": "markdown-viewer-mermaid-plus",
+  "version": "1.0.0",
+  "description": "增强 Markdown Viewer 的 Mermaid 图表功能 - 添加全屏查看和改进的缩放体验",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "release": "node scripts/release.js",
+    "version": "node scripts/bump-version.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaozhuang0433/markdown-viewer-mermaid-plus.git"
+  },
+  "keywords": [
+    "markdown",
+    "mermaid",
+    "chrome-extension",
+    "browser-extension"
+  ],
+  "author": "xiaozhuang0433",
+  "license": "MIT",
+  "devDependencies": {
+    "archiver": "^6.0.1",
+    "chalk": "^4.1.2"
+  }
+}
